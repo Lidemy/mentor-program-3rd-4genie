@@ -8,5 +8,4 @@ function stars(n) {
   return result;
 }
 
-console.log(stars(7));
 module.exports = stars;
