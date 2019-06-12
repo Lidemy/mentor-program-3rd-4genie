@@ -32,10 +32,12 @@
 ## hw3：CSS Diner
 
 請完成這個小遊戲：https://flukeout.github.io/
+![](https://i.imgur.com/1AptF0L.png)
 
 ## hw4：Flexbox Froggy
 
 請完成這個小遊戲：http://flexboxfroggy.com/
+![](https://i.imgur.com/xAx6Nra.png)
 
 ## hw5：簡答題
 
