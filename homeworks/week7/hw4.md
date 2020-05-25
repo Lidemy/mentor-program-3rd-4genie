@@ -43,7 +43,7 @@ event delegation 的好處是可以減少監聽器的數量:
 #### e.preventDefault(): 阻止瀏覽器的一些預設行為
 
 - `<form>` 的 `submit` -預設行為是送出表單，所以 `e.preventDefault()` 阻止送出表單
-- `<a>`- 預設點擊後到超鏈接網址， `e.preventDefault()` 阻止跳轉到超鏈接- 預設點擊後到超鏈接網址， `e.preventDefault()` 阻止跳轉到超鏈接
+- `<a>`- 預設點擊後到超鏈接網址， `e.preventDefault()` 阻止跳轉到超鏈接
 
 #### e.stopPropagation(): 阻止事件繼續傳遞，也就是說加在哪邊，事件的傳遞就斷在哪裡，不會繼續往下(或往上)傳遞。
 
@@ -58,6 +58,11 @@ e.stopPropagation(); // 阻止後續傳遞機制
 e.stopImmediatePropagation(); // 如果有多個監聽，同時阻止所有後續的傳遞機制
 ```
 
-總而言之，`e.preventDefault()` 是阻止預設行為，`e.stopPropagation()` 是阻止事件繼續傳遞。
+舉例來說，想睡覺的時候會不自覺的打哈欠（預設行為），但...打哈欠是會傳染的，因此，看到小明打哈欠，小美也想打哈欠，看到小美打哈欠的大華與阿中也跟著打哈欠（是一個 " 你睏了嗎？我也睏了，那麼大家都洗洗睡吧…… " 的概念），所以哈欠這件事就這樣一直傳下去。
+
+event.preventDefault() -> 阻止想睡覺就打哈欠這個預設行為
+event.stopPropagation() -> 阻止哈欠傳遞給下一個人
+
+這兩者的差異最主要是一個是阻止預設行為，一個是阻止事件繼續傳遞。
 
 參考來源：[DOM 的事件傳遞機制：捕獲與冒泡](https://blog.techbridge.cc/2017/07/15/javascript-event-propagation/)
