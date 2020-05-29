@@ -27,7 +27,7 @@ function reset() {
 // 監聽 body 的 click 事件
 body.addEventListener("click", (e) => {
   // 如果點擊"再試一次" 回到初始狀態
-  if (e.target.classList.contains("btn")) {
+  if (e.target.classList.contains("btn-restart")) {
     reset();
   } else {
     // 如果點擊的是畫面其他地方，則根據是否有按鈕、畫面是否變色等條件來執行相應動作
