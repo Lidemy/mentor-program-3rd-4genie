@@ -1,0 +1,59 @@
+body{
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  font-family:微軟正黑體;
+  background-color: #f7ad3e;
+}
+
+.container{
+  margin-top: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+
+.title{
+  font-size: 28px;
+}
+
+.btn{
+  border: solid 5px #fff;
+  border-radius: 7px;
+  padding: 10px 20px;
+  background-color: #d64066ee;
+  color: #fff;
+  font-size: 20px;
+  outline:none;
+  text-align: center;
+}
+
+.btn:hover{
+  background-color:#f05454;
+  cursor: pointer;
+}
+
+.first{
+  background: url(https://cmkt-image-prd.freetls.fastly.net/0.1.0/ps/3766982/910/607/m1/fpnw/wm0/main-.jpg?1513922630&s=71f403fa040ddd32f1370a4be8692703) center center no-repeat;
+}
+
+.second{
+  background: url(https://freedesignfile.com/upload/2017/08/Great-TV-logo-vector.jpg) center center no-repeat;
+  background-size: 326px  auto;
+  background-position-y: top;
+  background-color: #fff;
+
+}
+
+.third{
+  background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTHts1JmcKlN2CJPJ6_YhFB_Set3LwYzq-mLoYJm0OFkbnT6zdF) center center no-repeat;
+  background-color:#EE1C1B;
+  color: #fff;
+}
+
+.none{
+  background-color: #000;
+  color: #fff;
+}
