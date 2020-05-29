@@ -34,6 +34,7 @@ function sendLottryReques() {
         alert("系統不穩定，請再試一次");
       }
       button.textContent = "再抽一次!";
+      button.classList.add("draw-again");
     }
   };
   request.onerror = () => {
@@ -44,8 +45,9 @@ function sendLottryReques() {
 
 // 監聽 button
 button.addEventListener("click", (e) => {
-  if (e.target.textContent === "再抽一次!") {
+  if (e.target.classList.contains("draw-again")) {
     window.location.reload();
+    button.classList.remove("draw-again");
   } else {
     sendLottryReques();
   }
