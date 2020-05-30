@@ -13,7 +13,7 @@
   
 </head>
 <body>
-  <?php include_once('layout/nav.php');?>
+  <?php require_once('layout/nav.php');?>
   <main class="container">
     <p class="alert">警！！！本站為練習用網站，因教學用途刻意忽略資安的實作，註冊時請勿使用任何真實的帳號或密碼</p>
     
@@ -24,7 +24,7 @@
             <textarea name="add_comment" cols="40" rows="5" placeholder="我要爆料" id="spoiler"></textarea>
          </div>
          <?php
-          if($member){?>
+          if(isset($member) && !empty($member)){?>
             <input type="submit" value="是的，我要爆雷！">
           <?php }else{ ?>
             <div><h3>註冊或登入會員後才能留言喔～</h3></div>
