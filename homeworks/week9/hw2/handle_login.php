@@ -1,7 +1,7 @@
 <!-- 處理登入功能的程式邏輯-->
 
 <?php
-  require_once('./db_conn.php');  
+  require_once('./conn.php');  
   require_once('./utilis.php');
 
   /*************************************************
@@ -21,11 +21,11 @@
     $password = $_POST['password'];
 
   /**************************************
-   變數 sql 為從 table "msg_users" 中，撈出
+   變數 sql 為從 table "4genie_users" 中，撈出
    username 為 $username 、且 password 為 $password 的資料
   **************************************/
 
-    $sql = "SELECT * FROM msg_users WHERE username = '$username' AND password = '$password'";
+    $sql = "SELECT * FROM 4genie_users WHERE username = '$username' AND password = '$password'";
 
 
    /**************************************

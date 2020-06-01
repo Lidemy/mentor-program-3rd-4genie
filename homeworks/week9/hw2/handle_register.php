@@ -1,6 +1,6 @@
 <!-- 處理註冊功能的程式邏輯-->
 <?php
-  require_once('./db_conn.php');   
+  require_once('./conn.php');   
   require_once('./utilis.php'); 
 
   /*************************************************
@@ -27,9 +27,9 @@
 
   /**************************************
    變數 sql 為這註冊的 nickname、username、password
-   儲存到 table "msg_users" 中，
+   儲存到 table "4genie_users" 中，
   **************************************/
-    $sql = "INSERT INTO msg_users(nickname,username,password) VALUES ('$nickname','$username','$password')";
+    $sql = "INSERT INTO 4genie_users(nickname,username,password) VALUES ('$nickname','$username','$password')";
 
   /**************************************
    如果連線資料庫後成功執行 sql，轉址到首頁

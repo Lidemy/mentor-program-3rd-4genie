@@ -1,7 +1,7 @@
 <!-- 處理前端留言的程式邏輯-->
 
 <?php
-  require_once('./db_conn.php');
+  require_once('./conn.php');
   require_once('./utilis.php');
 
   /**************************************
@@ -17,10 +17,10 @@
     
   /**************************************
    變數 sql 將這則留言的 username、content
-   儲存至 table "msg_comments" 的中
+   儲存至 table "4genie_comments" 的中
   **************************************/ 
 
-    $sql = "INSERT INTO msg_comments(username,content) VALUES ('$username','$content')";
+    $sql = "INSERT INTO 4genie_comments(username,content) VALUES ('$username','$content')";
 
   /**************************************
    如果連線資料庫後成功執行 sql，轉址到首頁

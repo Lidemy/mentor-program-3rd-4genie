@@ -1,5 +1,5 @@
 <?php
-  require_once('./db_conn.php');
+  require_once('./conn.php');
   require_once('./check_login.php');
 ?>
 <!DOCTYPE html>
@@ -36,7 +36,7 @@
 
     <section class="comments">
       <?php
-        $sql = "SELECT c.content, c.created_at, u.nickname FROM msg_comments as c LEFT JOIN msg_users as u ON c.username = u.username ORDER BY c.id DESC LIMIT 50";
+        $sql = "SELECT c.content, c.created_at, u.nickname FROM 4genie_comments as c LEFT JOIN 4genie_users as u ON c.username = u.username ORDER BY c.id DESC LIMIT 50";
 
         $result = $conn->query($sql);
         if($result->num_rows>0){
