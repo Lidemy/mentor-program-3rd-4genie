@@ -49,7 +49,7 @@
    表示使用者輸入的帳號與資料庫的匹配，
    然後，檢查使用者輸入的密碼經過雜湊後，是否為此帳號的雜湊密碼。
    如果密碼正確，用 generateToken 這個 function 產生一組
-   16 碼的 token 亂碼，在 4genie_tokens 的 table 中
+   16 碼的 token 亂碼，在 4genie_certificates 的 table 中
    記錄 token 與 username 的關係，接著在瀏覽器儲存 token 的訊息在Cookie，
    保存此筆 token 24 小時，並且轉址到首頁。
    請瀏覽器下次發 Request 時，帶上這個 token，
@@ -64,7 +64,7 @@
       // 如果登入成功，建立 token
       $token = generateToken();
       $sql = sprintf(
-        "INSERT INTO 4genie_tokens(token,username) VALUES ('%s','%s')",
+        "INSERT INTO 4genie_certificates(token,username) VALUES ('%s','%s')",
         $token,
         $username
       );

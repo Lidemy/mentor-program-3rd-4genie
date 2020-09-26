@@ -55,7 +55,7 @@
 
     $token = generateToken();
     $sql = sprintf(
-      "INSERT INTO 4genie_tokens(token,username) VALUES ('%s','%s')",
+      "INSERT INTO 4genie_certificates(token,username) VALUES ('%s','%s')",
       $token,
       $username
     );
