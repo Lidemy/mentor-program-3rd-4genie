@@ -39,7 +39,7 @@
     $result = $conn->query($sql);
 
     if(!$result){
-      printMessage($conn->error,.$_SERVER['HTTP_REFERER']);
+      printMessage($conn->error,$_SERVER['HTTP_REFERER']);
       exit();
     }
 

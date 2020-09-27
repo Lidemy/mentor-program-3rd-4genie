@@ -28,9 +28,10 @@
    username 為 $username 的資料
   **************************************/
 
-    $sql = "SELECT * FROM 4genie_users WHERE username = '$username'";
-
-
+    $sql = sprintf(
+      "SELECT * FROM 4genie_users WHERE username = '%s'",
+      $username
+      );
    /**************************************
    設定變數 result 為連線資料庫並且執行上述 sql 語法。
    如果無法執行，則跳出連線錯誤訊息的視窗，
@@ -49,7 +50,7 @@
    表示使用者輸入的帳號與資料庫的匹配，
    然後，檢查使用者輸入的密碼經過雜湊後，是否為此帳號的雜湊密碼。
    如果密碼正確，用 generateToken 這個 function 產生一組
-   16 碼的 token 亂碼，在 4genie_certificates 的 table 中
+   16 碼的 token 亂碼，在 4genie_cetificates 的 table 中
    記錄 token 與 username 的關係，接著在瀏覽器儲存 token 的訊息在Cookie，
    保存此筆 token 24 小時，並且轉址到首頁。
    請瀏覽器下次發 Request 時，帶上這個 token，
