@@ -1,0 +1,175 @@
+/* 初始化 */
+* {
+  box-sizing: border-box;
+  font-family: 微軟正黑體;
+}
+
+body {
+  margin-top: 50px;
+  background-color: #221f1f;
+  color: #f5f5f1;
+  position: relative;
+  width: 100%;
+  background-image: url("https://assets.nflxext.com/ffe/siteui/vlv3/3b48f428-24ed-4692-bb04-bc7771854131/101a3eea-4818-43db-a0be-11decf113d48/TW-zh-20200302-popsignuptwoweeks-perspective_alpha_website_small.jpg");
+  height: 300px; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: 100% 850px; /* Resize the background image to cover the entire container */
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  height: 550px;
+  background-color: rgba(0, 0, 0, 0.46);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #f5f5f1;
+}
+
+/* 導覽列 */
+.nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #e50914;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  z-index: 1;
+}
+
+.nav__list {
+  display: flex;
+  padding: 0px;
+}
+
+.nav_right {
+  display: flex;
+}
+
+.nav__item ~ .nav__item {
+  margin-left: 16px;
+}
+
+.container {
+  /* margin: 0 auto; */
+  padding: 30px;
+  text-align: center;
+}
+
+.alert {
+  font-size: 16px;
+}
+
+.title {
+  padding: 20px;
+}
+
+.comment__form {
+  position: relative;
+  width: 600px;
+  margin: 0 auto;
+  padding: 15px;
+  padding-top: 0px;
+  background-color: #030303;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  opacity: 0.98;
+  /* z-index: 1; */
+}
+
+#spoiler {
+  width: 500px;
+  height: 66px;
+  color: #fff;
+  background-color: #333;
+  border: none;
+  text-decoration: none;
+}
+
+.comments {
+  width: 600px;
+  margin: 0 auto;
+  margin-top: 140px;
+}
+
+.comment {
+  background-color: #e50914;
+  margin-bottom: 16px;
+  text-align: left;
+  line-height: 27px;
+  padding: 16px;
+  border-radius: 5px;
+}
+
+.comment__nickname {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form__wrapper {
+  width: 400px;
+  height: 430px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #030303;
+  border-radius: 5px;
+  opacity: 0.95;
+}
+
+.title_member {
+  text-align: left;
+  font-size: 30px;
+  padding-left: 7px;
+}
+
+.form__row {
+  margin-bottom: 12px;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="submit"] {
+  padding: 5px 15px;
+  background: #333;
+  border: none;
+  color: #f5f5f1;
+  font-weight: 600;
+  height: 30px;
+  width: 347px;
+  height: 50px;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+input[type="submit"] {
+  background: #e50914;
+  height: 50px;
+  margin-top: 25px;
+}
+
+.paginator {
+  margin-top: 30px;
+}
+
+.paginator a {
+  border: solid 1px;
+  padding: 8px;
+}
