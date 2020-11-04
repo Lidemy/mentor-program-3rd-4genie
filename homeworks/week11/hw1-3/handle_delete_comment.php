@@ -13,6 +13,7 @@
       empty($_GET['id']) 
    ){
       printMessage('資料不齊全','./update_comment.php');
+      exit();
     }
 
 
