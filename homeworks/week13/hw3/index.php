@@ -85,7 +85,7 @@
         console.log(content, parent_id);
         $.ajax({
           type: 'POST',
-          url: 'http://localhost:8080/Genie/hw9ex/hw13/hw/handle_add_comment.php',
+          url: './handle_add_comment.php',
           data: {
             content,
             parent_id
