@@ -80,8 +80,8 @@
       // 新增留言
       $('form').submit(e=>{
         e.preventDefault();
-        const content = $('textarea[name=add_comment]').val();
-        const parent_id = $('input[name=parent_id]').val();
+        const content = $(e.target).find('#spoiler').val();
+        const parent_id = $(e.target).find('input[name=parent_id]').val();
         console.log(content, parent_id);
         $.ajax({
           type: 'POST',
