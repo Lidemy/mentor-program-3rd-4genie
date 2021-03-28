@@ -1,4 +1,10 @@
 <?php
+  /*************************************
+  1. 啟動 PHP Session 機制
+  2. 設定 header 的 content type 為 json，編碼 utf-8
+  3. Server 的 response header 
+     加上 Access-Control-Allow-Origin 允許跨來源資源共享 （CORS）
+  **************************************/
   session_start();
   require_once('./conn.php');
   require_once('./utilis.php');
@@ -6,10 +12,9 @@
   header('Access-Control-Allow-Origin: *');
 
   /**************************************
-   1.如果有留言送出，且留言不為空，
-    變數 username 可透過 cookie 所存的 token，
-    用 getNicknameFromToken 這個 function 得出  
-   2.變數 content 為 留言內容
+   1.如果留言為空，傳回 json 格式的錯誤訊息
+   2.否則設定變數 content、parent_id，
+     並從瀏覽器的 session 取得 username
   **************************************/ 
     
   if(empty($_POST['content'])){
@@ -42,6 +47,11 @@
 
   $result = $stmt->execute();
   
+  /**************************************************
+   1.設定變數 result 為連線資料庫並且執行上述 sql 語法。
+     如果無法執行，傳回 json 格式的連線錯誤訊息
+   2.否則傳回 json 格式的正確訊息
+  ***************************************************/ 
   if(!$result){
     echo json_encode(array(
       "result"=> false,

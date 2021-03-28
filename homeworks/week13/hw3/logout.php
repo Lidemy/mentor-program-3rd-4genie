@@ -1,7 +1,7 @@
 <!-- 
   登出功能：
-  1.刪除 4genie_certificates 中的 token
-  2.將 cookie 的 token 設為空，
+  1.啟動 PHP Session 機制 
+  2.清除 browser 的session
   3.轉址到首頁
  -->
 <?php

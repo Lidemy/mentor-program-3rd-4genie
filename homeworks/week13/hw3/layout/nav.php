@@ -4,10 +4,10 @@
 不用每個頁面都要再改一次，比較不容易漏掉。
 ***********************-->
 
-<nav class="nav">
+<nav class="nav ">
   <ul class="nav__list nav__left">
     <li class="nav_item">
-      <a href="./index.php">首頁</a>
+      <a class="fs-6" href="./index.php">首頁</a>
     </li>
   </ul>
   <ul class="nav__list nav__right">

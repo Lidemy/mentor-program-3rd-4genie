@@ -1,4 +1,7 @@
 <?php
+  /*************************************
+  啟動 PHP Session 機制
+  **************************************/
   session_start();
   require_once('./conn.php');
   require_once('./check_login.php');
@@ -8,7 +11,13 @@
   $member = NULL;
   $username = NULL;
 
+  /*************************************************
+  如果瀏覽器中 session 的 username 資料不為空，
+  變數 username 為瀏覽器的 session 中的 username 資料，
+  且利用變數 username, 撈出此 user 的資料
+   *************************************************/
   if(!empty($_SESSION['username'])){
+   
     $username = $_SESSION['username'];
     $member = getUserFromUsername($_SESSION['username']);
   }
@@ -39,9 +48,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>留言板 Home</title>
   <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css" >
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
   <link rel="stylesheet" href="./style.css">
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script>
+  /*************************************************
+  跳脫字元，將使用者輸入的內容當作文字來處理，
+  避免誤執行了 html 或 js
+  *************************************************/
     function escape(toOutput) {
       return toOutput.replace(/\&/g, '&amp;')
         .replace(/\</g, '&lt;')
@@ -51,6 +65,9 @@
         .replace(/\//g, '&#x2F');
     }
 
+  /*************************************************
+  用 API 串接，實行刪除留言與新增留言的功能
+  *************************************************/
     $(document).ready(()=>{
       // 刪除留言
       $('.comments').on('click','.comment__delete-btn',function(e){
@@ -74,6 +91,7 @@
               subComment.hide(500);
             }
           })
+          
         })  
       })
 
@@ -113,15 +131,15 @@
     <section class="comments comment__post">
       <form class="comment__form">
          <input type="hidden" value = 0 name="parent_id">
-         <h2 class="title">爆雷有理，劇透無罪</h2>
+         <h2 class="fs-4 title ">爆雷有理，劇透無罪</h2>
          <div>
             <textarea name="add_comment" cols="40" rows="5" placeholder="我要爆料" id="spoiler"></textarea>
          </div>
          <?php
           if(isset($username) && !empty($username)){?>
-            <input type="submit" value="是的，我要爆雷！">
+            <input class="btn btn-danger" type="submit" value="是的，我要爆雷！">
           <?php }else{ ?>
-            <div><h3>註冊或登入會員後才能留言喔～</h3></div>
+            <div><h3 class="fs-6 bootstrap-text">註冊或登入會員後才能留言喔～</h3></div>
           <?php
           }
          ?>
@@ -186,7 +204,7 @@
                   ?>
                   </div>
                   <div class="add-sub-comment">
-                    <h3>有料要追加</h3>
+                    <h3 class="fs-6 bootstrap-text">有料要追加</h3>
                     <form class="sub-comment__form">
                       <input type="hidden" value = <?= escape($row['id']); ?> name="parent_id">
                       <div>
@@ -194,9 +212,9 @@
                       </div>
                       <?php
                         if(isset($member) && !empty($member)){?>
-                          <input type="submit" value="我來爆一個！">
+                          <input class="btn btn-danger" type="submit" value="我來爆一個！">
                         <?php }else{ ?>
-                          <div><h3>註冊或登入會員後才能留言喔～</h3></div>
+                          <div><h3 class="fs-6 bootstrap-text">註冊或登入會員後才能留言喔～</h3></div>
                         <?php
                         }
                       ?>
@@ -227,7 +245,7 @@
 
       ?>
       <div class="page-info">
-        <span>總共 <?php echo $count ?> 筆留言，</span>
+        <span >總共 <?php echo $count ?> 筆留言，</span>
         <span><?php echo $page ?> / <?php echo $total_page ?> 頁</span>
       </div>
       <div class="paginator">
@@ -239,8 +257,10 @@
           <a href="index.php?page=<?php echo $page + 1; ?>">下一頁</a>
           <a href="index.php?page=<?php echo $total_page; ?>">尾頁</a>
         <?php } ?> 
-      </div>
+      </div>   
     </section>
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
 </body>
 </html>

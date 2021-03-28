@@ -1,8 +1,8 @@
 <?php
 /*************************************
-  檢查 cookie 的資料，如果 cookie 存有 token 且 token 不為空，
-  將變數 member 設為 cookie 存的 token，
-  否則 變數 member 為 null
+  檢查瀏覽器的 session，如果 session 中存有 username 的資料，且資料不為空，
+  將變數 username 設為 session 中的所存的 username 的資料，
+  否則 變數 username 為 null
   *************************************/
   if(
     isset($_SESSION['username']) &&

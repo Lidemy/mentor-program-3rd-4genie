@@ -1,6 +1,9 @@
 <!-- 處理編輯留言功能的程式邏輯-->
 
 <?php
+  /*************************************
+  啟動 PHP Session 機制
+  **************************************/
   session_start();
   require_once('./conn.php');  
   require_once('./check_login.php');
@@ -9,8 +12,9 @@
   /*************************************************
   檢查編輯留言的頁面
   如果有 content 的 input 送出，且不為空，
-  變數 content 為 輸入的 content 
+  變數 content 為輸入的 content 
   變數 id 為 輸入留言的 id
+  變數 username 為瀏覽器的 session 中的 username 資料
    *************************************************/
   if(
       empty($_POST['content'])

@@ -1,5 +1,8 @@
 <!-- 處理註冊功能的程式邏輯-->
 <?php
+  /************************
+  啟動 PHP Session 機制
+  *************************/
   session_start();
   require_once('./conn.php');   
   require_once('./utilis.php'); 
@@ -9,7 +12,8 @@
   如果有 nickname、 username、password 的 input 送出，且不為空，則
   變數 nickname 為 輸入的 nickname 
   變數 username 為 輸入的 username 
-  變數 password 為 輸入的 password 經過雜湊後的密碼 
+  變數 password 為 輸入的 password 經過雜湊後的密碼
+  否則，跳出錯誤訊息 
     *************************************************/
 
   if(
@@ -26,6 +30,7 @@
 
     $nickname = $_POST['nickname'];
     $username = $_POST['username'];
+    
     // 將密碼雜湊（hash）
     $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
 
@@ -44,10 +49,9 @@
     // echo "SQL: ".$sql. "<br>";
     // exit();
   /***************************************************
-   1.如果連線資料庫後成功執行 sql，建立 token 並轉址到首頁,
-   否則跳出"送出錯誤"訊息視窗，轉址到註冊頁
-   2.將 sql query 換成 prepared statement，
-   避免 SQL Injection
+   1. 如果連線資料庫後成功執行 sql，將變數 username 設定為
+      瀏覽器的 session 中的 username 資料並轉址到首頁
+   2. 否則跳出"送出錯誤"訊息視窗，轉址到註冊頁
   ****************************************************/
     
     if(!$result){
@@ -58,8 +62,6 @@
       }
       die($conn->error);
     }
-
-
   //   $token = generateToken();
   //   $sql = "INSERT INTO 4genie_certificates(token,username) VALUES (?,?)";
   //   $stmt =$conn->prepare($sql);

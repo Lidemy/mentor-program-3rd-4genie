@@ -1,4 +1,7 @@
 <?php
+  /*************************************
+  啟動 PHP Session 機制
+   *************************************/
   session_start();
   require_once('./conn.php');
   require_once('./utilis.php');
@@ -49,6 +52,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>編輯留言</title>
   <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css" >
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
   <link rel="stylesheet" href="./style.css">
   
 </head>
@@ -63,7 +67,7 @@
          <div>
             <textarea name="content" cols="40" rows="5" id="spoiler"><?= escape($row['content']); ?></textarea>
             <input type="hidden" name="id" value="<?= escape($row['id']);?>">
-            <input type="submit" value="送出留言！">
+            <input class="btn btn-danger" type="submit" value="送出留言！">
          </div>
       </form>
     </section>
