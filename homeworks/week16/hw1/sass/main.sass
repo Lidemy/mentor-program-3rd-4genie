@@ -1,0 +1,136 @@
+
+@import -normal.sass
+@import -modules.sass
+@import -variables.sass
+
+body
+  @extend %body
+
+ul
+  list-style: none
+
+a
+  @extend %a
+  &:hover
+    @extend %a
+
+/* 導覽列 */
+.nav
+  @extend %nav
+  &__list
+    @extend %display
+    padding: 5px
+    margin: 8px
+  &_right
+    @extend %display
+  &__item ~ &__item
+    margin-left: 16px
+
+.container
+  /* margin: 0 auto */
+  padding: 30px
+  text-align: center
+
+.alert
+  font-size: 16px
+
+.title
+  padding: 20px
+
+#spoiler
+  width: 500px
+  height: 66px
+  color: #fff
+  background-color: #333
+  border: none
+  text-decoration: $text-decoration
+
+.comments
+  width: 600px
+  margin: $set-center
+  margin-top: 140px
+
+.comment
+  @extend %comment
+  &__form
+    @extend %comment-form
+    /* z-index: 1 */
+  &__edit-btn
+    margin-right: 5px
+    cursor: $cursor
+
+  &__delete-btn
+    cursor: $cursor
+
+  &__nickname,
+  .sub-comment__nickname
+    @extend %display
+    justify-content: space-between
+
+.update_comment
+  @extend %display
+
+.sub-comments
+  width: 560px
+  margin: $set-center
+  margin-top: 20px
+
+.sub-comment
+  @extend %sub-comment
+
+.user-comment
+  background-color: $background-black
+
+.form__wrapper
+  @extend %form-wrapper
+
+.add-sub-comment
+  @extend %add-sub-comment
+.title_member
+  text-align: left
+  font-size: 30px
+  font-weight: bold
+  padding-left: 7px
+  margin-bottom: 16px
+
+.form__row
+  margin-bottom: 12px
+  font-size: 17px
+  font-weight: 900
+
+input[type="text"]
+  @extend %input
+input[type="password"]
+  @extend %input
+input[type="submit"]
+  @extend %input
+
+input[type="submit"]
+  background: #e50914
+  height: 50px
+  margin-top: 25px
+
+.pagination
+  @extend %display
+  justify-content: center
+
+.page-info
+  position: absolute
+  justify-content: center
+  align-items: center
+
+.page-info,
+.paginator
+  margin: $set-center
+
+.paginator
+  margin-top: 45px
+
+.paginator a
+  margin: $set-center
+  border: solid 1px
+  padding: 8px
+
+.bootstrap-text
+  margin-top: 6px
+  margin-bottom: 10px
