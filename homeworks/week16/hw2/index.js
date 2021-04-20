@@ -3,7 +3,8 @@ function Stack() {
   const arr = [];
   return {
     push: (item) => {
-      arr.splice(arr.length, 0, item); // 在陣列 arr 的尾端加入 item
+      arr[arr.length] = item; // 在陣列 arr 的尾端加入 item
+      // 另一種寫法：arr.splice(arr.length, 0, item)
     },
     pop: () => {
       const result = arr.splice(-1, 1); // 陣列 result 表示回傳一個包含被刪除的 arr 陣列尾端的元素的陣列
@@ -17,7 +18,8 @@ function Queue() {
   const arr = [];
   return {
     push: (item) => {
-      arr.splice(arr.length, 0, item);
+      arr[arr.length] = item; // 在陣列 arr 的尾端加入 item
+      // 另一種寫法：arr.splice(arr.length, 0, item)
     },
     pop: () => {
       const result = arr.splice(0, 1); // 陣列 result 表示回傳一個包含被刪除的 arr 陣列首端的元素的陣列
