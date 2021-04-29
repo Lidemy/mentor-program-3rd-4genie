@@ -1,0 +1,87 @@
+// 設定變數
+$align-center: center
+$color: #384e66
+
+// 設定extend
+%over
+  overflow: hidden
+  white-space: nowrap
+  text-overflow: ellipsis
+
+html body
+  box-sizing: border-box
+  font-family: 微軟正黑體
+  width: 100%
+  height: 100%
+  margin: 0px auto
+  padding: 0px
+
+body
+  width: 90%
+  height: -webkit-fill-available
+  margin-top: 0px
+  background: url("https://fsmedia.imgix.net/c2/99/72/cc/5877/4075/a3ba/a8a084b76519.jpeg?rect=224%2C0%2C4558%2C3417&auto=format%2Ccompress&dpr=2&w=1200") no-repeat center center fixed
+  background-size: cover
+  position: relative
+
+.title
+  font-size: 30px
+  color: #fff
+  text-align: $align-center
+  margin-top: 40px
+
+.subtitle
+  font-size: 18px
+  color: #79c7fa
+  text-align: $align-center
+
+.stream
+  height: 100%
+  width: 100%
+  display: flex
+  flex-direction: row
+  justify-content: $align-center
+  align-items: $align-center
+  flex-wrap: wrap
+
+.game
+  width: 250px
+  height: 200px
+  margin: 15px
+  background: $color
+  transition: 0.15s
+  &:hover
+    transform: scale(1.1)
+    opacity: 1
+    box-shadow: 0 0 2rem black
+    z-index: 1
+  &__detail
+    width: 200px
+    height: 30%
+    background-color: $color
+  &__avatar
+    width: 45px
+    height: 45px
+    border-radius: 100%
+    display: inline-block
+    margin-left: 12px
+    margin-top: 6px
+  &__info
+    display: inline-block
+    color: #fff
+    font-weight: 600
+    margin-left: 10px
+    margin-top: 6px
+    @extend %over
+    &-status
+      width: 120px
+      height: 25px
+      @extend %over
+    &-name
+      width: 120px
+      height: 25px
+      font-size: 12px
+
+.live
+  width: 250px
+  height: 70%

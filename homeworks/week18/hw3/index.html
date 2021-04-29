@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Week 18 Hw 3- Todo list</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://bootswatch.com/4/minty/bootstrap.css" />
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="index.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row mt-4">
+      <div class="col-12">
+        <div class="alert alert-info" role="alert">
+          我的每日待辦清單
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="input-group">
+          <input type="text" class="form-control new-todo" placeholder="輸入待辦事項">
+          <div class="input-group-append">
+            <button class="btn btn-outline-info add-newTodo-btn mb-3 " type="button" id="button-add-todo"
+              style="width: 9.8rem">新增</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <ul class="list-group list-group-flush todo-list">
+            <!-- <li class="list-group-item d-flex justify-content-between align-items-center todo-item">
+              <input class="todo__completed-btn unselectable" type="checkbox"/>
+              <div class="todo-content">運動 30 分鐘</div>
+              <div><i class="btn btn-danger delete-todo material-icons" aria-hidden="true">delete</i></div>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS, Popper.js, and jQuery -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
