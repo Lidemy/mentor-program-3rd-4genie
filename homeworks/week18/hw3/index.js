@@ -1,3 +1,4 @@
+/* eslint-disable prefer-template */
 /* eslint-disable prefer-const */
 /* eslint-disable no-unneeded-ternary */
 /* eslint-disable dot-notation */
@@ -13,16 +14,50 @@ function render() {
   $('.todo-list').empty();
 
   // 將 list 中的資料放入 <li> 中
+  console.log('list now', list);
   for (let i = 0; i < list.length; i++) {
     $('.todo-list').append(`
       <div class="list-group-item d-flex justify-content-between align-items-center todo-item" data-id=${i}>
-        <input class="todo__completed-btn unselectable" type="checkbox" id="checkBox1" />
-        <label class="todo-content" for="checkBox1">${list[i]['content']}</label>
+        <input class="todo__completed-btn unselectable" type="checkbox" id="todo-${i}"/>
+        <label class="todo-content" for="todo-${i}">${list[i]['content']}</label>
         <div><i class="btn btn-danger delete-todo material-icons" aria-hidden="true" >delete</i></div>
       </div>
     `);
+    // 如果 todo 的狀態為已完成，將核對方塊勾選與 todo 的刪除線
+    if (list[i]['isDone']) {
+      $('#todo-' + i).prop('checked', true);
+      $('#todo-' + i).next().addClass('todo__content--completed');
+    }
   }
 }
+
+// 完成 todo
+function doneTodo(item) {
+  const finishTodo = $(item.target);
+  const index = $(item.target).parent().attr('data-id');
+  // list[index]['isDone'] = list[index]['isDone'] ? false : true;
+  list[index]['isDone'] = !list[index]['isDone'];
+  if (list[index]['isDone']) {
+    finishTodo.attr('checked', true);
+    finishTodo.next().addClass('todo__content--completed');
+  } else {
+    finishTodo.attr('checked', false);
+    finishTodo.next().removeClass('todo__content--completed');
+  }
+}
+
+// 另一種寫法
+// function doneTodo(e) {
+//   const target = $(e.target);
+//   const isChecked = target.is(':checked');
+//   if (isChecked) {
+//     target.attr('checked', true);
+//     target.next().addClass('todo__content--completed');
+//   } else {
+//     target.attr('checked', false);
+//     target.next().removeClass('todo__content--completed');
+//   }
+// }
 
 // 增加新的 todo
 function addTodo() {
@@ -32,26 +67,13 @@ function addTodo() {
     isDone: false,
   });
   $('.new-todo').val(''); // 清空輸入框
+  console.log('addtodo', list);
 }
 
 // 刪除 todo
 function deleteTodo(remove) {
   const value = $(remove.target).parent().prev().text(); // 找到要刪除的 todo 的內容
   list = list.filter(item => item.content !== value); // 找到 list 陣列中此筆資料並刪除，然後留下剩下的 todo
-}
-
-// 完成 todo
-function doneTodo(item) {
-  const DoneTodo = $(item.target);
-  const index = $(item.target).parent().attr('data-id');
-  list[index]['isDone'] = list[index]['isDone'] ? false : true;
-  if (list[index]['isDone']) {
-    DoneTodo.attr('checked', true);
-    DoneTodo.next().addClass('todo__content--completed');
-  } else {
-    DoneTodo.attr('checked', false);
-    DoneTodo.next().removeClass('todo__content--completed');
-  }
 }
 
 $(document).ready(() => {
