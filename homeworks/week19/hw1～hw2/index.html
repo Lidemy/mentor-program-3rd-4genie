@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="index.js"></script>
+  <title>Week19 Todo List</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <h1 class="text-center">Todo List</h1>
+        
+        <!----新增 todo-->
+        <div class="input-group mb-3">
+          <input type="text" class="input-todo form-control" placeholder="todo">
+          <div class="input-group-append">
+            <button class="btn btn-add btn-outline-secondary" type="button">新增</button>
+          </div>
+        </div>
+
+        <!----顯示 todos-->
+        <div class="todos list-group ">
+          
+        </div>
+
+        <!----篩選 todos-->
+        <div class="info mt-1 d-flex justify-content-between align-items-center">
+          <div class="options d-flex">
+            <div class="active" data-filter="all">全部</div>
+            <div class="ml-2" data-filter="uncomplete">未完成</div>
+            <div class="ml-2" data-filter="done">已完成</div>
+          </div>
+        </div>
+
+        <!----編輯留言的 modal HTML-->
+        <div class="modal fade" id="edit-content" tabindex="-1" aria-hidden="true" role="dialog" aria-labelledby="exampleModalLabel">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">編輯留言</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <!--編輯 todo 內容-->
+              <div class="modal-body">
+                <input maxlength="40" class="edit-todo-input form-control" id="editId" placeholder="Please add something here">
+              </div>
+              <!--按鈕-->
+              <div class="modal-footer">
+                <button type="button" class="btn-cancel btn btn-secondary" data-dismiss="modal">取消</button>
+                <button type="button" class=" btn-confirm btn btn-primary" data-dismiss="modal">確定</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!----modal 結束-->
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
