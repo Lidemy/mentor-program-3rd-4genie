@@ -3,21 +3,10 @@ import { getAuthToken } from './utils';
 // api URL
 const BASE_URL = 'https://student-json-api.lidemy.me';
 
-// 拿到所有的文章
+// 拿到的文章
 export const getPosts = () => {
-  return fetch(`${BASE_URL}/posts?_sort=createdAt&_order=desc`).then((res) =>
-    res.json()
-  );
+  return fetch(`${BASE_URL}/posts?_limit=5&_sort=createdAt&_order=desc`);
 };
-
-// get posts count
-// export const getPostsCount = () => {
-//   return fetch(`${BASE_URL}/posts?_limit=5&_sort=createdAt&_order=desc`).then(
-//     (res) => {
-//       return res.headers.get('X-Total-Count');
-//     }
-//   );
-// };
 
 // 根據參數 id, 拿到特定的一篇文章
 export const getPost = (id) => {
@@ -37,7 +26,6 @@ export const addNewPost = (title, body) => {
   // 用 POST 方法，將 token、文章標題 title、文章內容 body 上傳到 API
   return fetch(`${BASE_URL}/posts`, {
     method: 'POST',
-
     headers: {
       'content-type': 'application/json',
       authorization: `Bearer ${token}`,
