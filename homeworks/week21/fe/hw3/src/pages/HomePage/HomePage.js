@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { getLimitPosts, getPosts } from '../../WebAPI';
+import { getLimitPosts, getPosts, getPostsCount } from '../../WebAPI';
 import { getPages } from '../../utils';
 
 const Root = styled.div`
@@ -79,7 +79,7 @@ export default function HomePage() {
   // 設定 posts 的 state
   const [posts, setPosts] = useState([]);
   // 設定 pages 的 state
-  const [pages, setPages] = useState([]);
+  const [pages, setPages] = useState(1);
   // 設定 isLoading 的 state
   const [isLoading, setIsLoading] = useState(false);
   // 設定每頁顯示多少筆
@@ -89,16 +89,30 @@ export default function HomePage() {
     // 設 isLoading 為 true
     setIsLoading(true);
     getPosts()
-      .then((posts) => {
-        // 計算每頁 limit 筆的話，全部共有多少頁
-        let totalPages = Math.ceil(posts.length / limit);
-        // 計算出全部頁數後，更新 pages 的state
+      .then((res) => {
+        // 總頁數由 response 的 header 中 "x-total-count" 取得總共的留言筆數，然後再除以每頁的筆數，無條件進位
+        let totalPages = Math.ceil(res.headers.get('x-total-count') / limit);
+        // 將總共頁數帶入 getPages() 方法，然後更新 pages 的狀態
         setPages(getPages(totalPages));
+        return res.json();
+      })
+      .then((data) => {
         // 到第一頁
         getLimitPosts(1, limit).then((posts) => setPosts(posts));
         // 成功後，將 isLoading 的 state 更新為 false
         setIsLoading(false);
       })
+      // getPosts()
+      //   .then((posts) => {
+      //     // 計算每頁 limit 筆的話，全部共有多少頁
+      //     let totalPages = Math.ceil(posts.length / limit);
+      //     // 計算出全部頁數後，更新 pages 的state
+      //     setPages(getPages(totalPages));
+      //     // 到第一頁
+      //     getLimitPosts(1, limit).then((posts) => setPosts(posts));
+      //     // 成功後，將 isLoading 的 state 更新為 false
+      //     setIsLoading(false);
+      //   })
       .catch((err) => {
         // API 串接有誤時，isLoading 的 state 更新為 false
         setIsLoading(false);

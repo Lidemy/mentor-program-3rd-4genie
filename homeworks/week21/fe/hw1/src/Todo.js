@@ -10,7 +10,7 @@ const EditInput = styled.input`
   outline: none;
 `;
 
-const Button = styled.button``;
+const Button = styled.button.attrs({ className: 'todo-btns btn btn-info' })``;
 
 export default function Todo({
   //從 App.js 傳入 props
@@ -41,7 +41,7 @@ export default function Todo({
   };
 
   // 編輯 todo：
-  const EditTodo = () => {
+  const executeEditTodo = () => {
     // 如果編輯的 input 欄位沒有值 => isUpdating 狀態更新為 false
     if (!inputRef.current.value) {
       return setIsUpdating(false);
@@ -58,7 +58,7 @@ export default function Todo({
 
   // 點擊 '修改完成' 後，執行 EditTodo()
   const handleFinishedEditClick = () => {
-    EditTodo();
+    executeEditTodo();
   };
 
   // 編輯欄按下 'Enter' 鍵後，執行 EditTodo()
@@ -66,7 +66,7 @@ export default function Todo({
     // 若按下的鍵非 'Enter'=> return
     if (e.key !== 'Enter') return;
     // 若為'Enter',執行 EditTodo()
-    EditTodo();
+    executeEditTodo();
   };
 
   return (
@@ -103,14 +103,11 @@ export default function Todo({
       {/* 否則，顯示 '修改完成' 按鈕 */}
       {!isUpdating ? (
         // 點擊按鈕時，執行 handleEditClick
-        <Button onClick={handleEditClick} className="todo-btns btn btn-info">
-          編輯
-        </Button>
+        <Button onClick={handleEditClick}>編輯</Button>
       ) : (
         <Button
           // 點擊按鈕時，執行 handleFinishedEditClick
           onClick={handleFinishedEditClick}
-          className="todo-btns btn btn-info"
         >
           修改完成
         </Button>
