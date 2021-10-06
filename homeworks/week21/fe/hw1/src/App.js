@@ -9,27 +9,42 @@ const Title = styled.h1`
   margin-top: 10px;
   text-align: center;
 `;
-const Todolist = styled.div``;
-const Filters = styled.div``;
-const InputContainer = styled.div``;
-const Input = styled.input``;
-const Button = styled.button``;
+
+// const Todolist = styled.div.attrs(() => ({
+//   className: 'todos list-group',
+// }))``;
+
+const Todolist = styled.div.attrs({
+  className: 'todos list-group',
+})``;
+const Filters = styled.div.attrs({
+  className: 'info mt-1 d-flex justify-content-between align-items-center',
+})``;
+const InputContainer = styled.div.attrs({
+  className: 'input-group mb-3',
+})``;
+const Input = styled.input.attrs({
+  className: 'input-todo form-control',
+})``;
+const Button = styled.button.attrs({
+  className: 'btn btn-add btn-outline-secondary',
+})``;
 
 export default function App() {
   //從 useTodos.js 傳入 props
   const {
-    filterValue,
+    todos,
     todoCotentRef,
+    //filterValue,
     handleAddTodo,
     handleKeyDown,
     handleDeleteTodo,
     handleToggleIsDone,
     handleClearIsDoneTodos,
-    handleFilter,
+    updateFilter,
     editTodo,
     handleUnfinishedCount,
   } = useTodos();
-
   return (
     <>
       <div className="container">
@@ -38,11 +53,10 @@ export default function App() {
             <Title>Todo List</Title>
 
             {/* 輸入 input 的欄位，並且旁邊有'新增' 的按鈕 */}
-            <InputContainer className="input-group mb-3">
+            <InputContainer>
               <Input
                 ref={todoCotentRef}
                 type="text"
-                className="input-todo form-control"
                 placeholder="todo"
                 //輸入後按下 'Enter'，新增 input 中的 todo
                 onKeyDown={handleKeyDown}
@@ -51,7 +65,6 @@ export default function App() {
                 <Button
                   // 點擊按鈕後， 新增 input 中的 todo
                   onClick={handleAddTodo}
-                  className="btn btn-add btn-outline-secondary"
                 >
                   新增
                 </Button>
@@ -59,9 +72,8 @@ export default function App() {
             </InputContainer>
 
             {/* 顯示 Todos 的內容  */}
-            <Todolist className="todos list-group">
-              {filterValue.map((todo) => (
-                // 顯示每一個 todo
+            <Todolist>
+              {todos.map((todo) => (
                 <Todo
                   key={todo.id}
                   todo={todo}
@@ -73,7 +85,7 @@ export default function App() {
             </Todolist>
 
             {/* todos 的篩選功能 */}
-            <Filters className="info mt-1 d-flex justify-content-between align-items-center">
+            <Filters>
               <div>
                 <span className="uncomplete-count">
                   {handleUnfinishedCount()}
@@ -81,13 +93,13 @@ export default function App() {
                 個未完成
               </div>
               <div className="options d-flex">
-                <div className="active" onClick={handleFilter} selected>
+                <div className="active" onClick={() => updateFilter('all')}>
                   全部
                 </div>
-                <div className="ml-2" onClick={handleFilter}>
+                <div className="ml-2" onClick={() => updateFilter('undone')}>
                   未完成
                 </div>
-                <div className="ml-2" onClick={handleFilter}>
+                <div className="ml-2" onClick={() => updateFilter('done')}>
                   已完成
                 </div>
               </div>

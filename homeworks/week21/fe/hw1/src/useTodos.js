@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { setTodosToken, getTodosFromToken } from './utils';
 
@@ -10,7 +10,10 @@ export default function useTodos() {
   const todoCotentRef = useRef();
 
   // 儲存 filter 的狀態，預設值為 todos
-  const [filterValue, setFilterValue] = useState(todos);
+  // const [filterValue, setFilterValue] = useState(todos);
+
+  // 儲存 filter 的狀態
+  const [filter, setFilter] = useState('all');
 
   // 初始化 todos：如果 localStorage 有 todos 的值，拿取 localStorage 中的 todos
   useEffect(() => {
@@ -22,7 +25,7 @@ export default function useTodos() {
   // todos 的狀態有變化時，儲存到 localStorage，並更新 Filter 的狀態
   useEffect(() => {
     setTodosToken(todos);
-    setFilterValue(todos);
+    // setFilterValue(todos);
   }, [todos]);
 
   // 新增 todo ：
@@ -105,30 +108,46 @@ export default function useTodos() {
     // 用 length 算出未完成 todo 總數
     todos.filter((todo) => !todo.isDone).length;
 
+  // // 篩選 todos：
+  // const handleFilter = useCallback(
+  //   (e) => {
+  //     // 取出篩選 button 的 innerText
+  //     const selectedItem = e.target.innerText;
+  //     // 如果篩選 '全部' => todos
+  //     if (selectedItem === '全部') {
+  //       setFilterValue(todos);
+  //     }
+  //     // 如果篩選 '已完成' => 用 filter 選出 todo 狀態為 isDone 為true 的 todo， 以 setFilterValue 更新 filterValue
+  //     if (selectedItem === '已完成') {
+  //       setFilterValue(todos.filter((todo) => todo.isDone));
+  //     }
+  //     // 如果篩選 '未完成' => 用 filter 選出 todo 狀態為 isDone 為 false 的 todo， 以 setFilterValue 更新
+  //     if (selectedItem === '未完成') {
+  //       setFilterValue(todos.filter((todo) => !todo.isDone));
+  //     }
+  //   },
+  //   // dependency： 當偵測到 todos 改變時才再重新渲染
+  //   [todos]
+  // );
+
+  // 更新 filter 的狀態：
+  const updateFilter = useCallback((newFilter) => {
+    // 更新 filter 為傳入的值
+    setFilter(newFilter);
+  }, []);
+
   // 篩選 todos：
-  const handleFilter = useCallback(
-    (e) => {
-      // 取出篩選 button 的 innerText
-      const selectedItem = e.target.innerText;
-      // 如果篩選 '全部' => todos
-      if (selectedItem === '全部') {
-        setFilterValue(todos);
-      }
-      // 如果篩選 '已完成' => 用 filter 選出 todo 狀態為 isDone 為true 的 todo， 以 setFilterValue 更新 filterValue
-      if (selectedItem === '已完成') {
-        setFilterValue(todos.filter((todo) => todo.isDone));
-      }
-      // 如果篩選 '未完成' => 用 filter 選出 todo 狀態為 isDone 為 false 的 todo， 以 setFilterValue 更新
-      if (selectedItem === '未完成') {
-        setFilterValue(todos.filter((todo) => !todo.isDone));
-      }
-    },
-    // dependency： 當偵測到 todos 改變時才再重新渲染
-    [todos]
-  );
+  const filteredTodos = useMemo(() => {
+    return todos.filter((todo) => {
+      if (filter === 'all') return true;
+      return filter === 'undone' ? !todo.isDone : todo.isDone;
+    });
+    // dependency： 當偵測到 todos, filter 改變時才再重新渲染
+  }, [todos, filter]);
 
   return {
-    filterValue,
+    todos: filteredTodos,
+    // filterValue,
     todoCotentRef,
     AddTodo,
     handleAddTodo,
@@ -136,7 +155,7 @@ export default function useTodos() {
     handleDeleteTodo,
     handleToggleIsDone,
     handleClearIsDoneTodos,
-    handleFilter,
+    updateFilter,
     editTodo,
     handleUnfinishedCount,
   };
